@@ -42,10 +42,11 @@ looks before (90)
 	TriggerEvent("redemrp_skin:openCreator")
 	print("new character")..............
 ```
+we add this
 
+```TriggerServerEvent("player:getItems", source)```
 
-```
-## 4. Credits
+## 5. Credits
 [Ktos93](http://github.com/Ktos93)
 
 [z00t](https://github.com/z00t) - Thanks for huge help
