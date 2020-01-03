@@ -24,24 +24,24 @@ press [E] to open inventory
 ## 4. Auto load inventory
 put code to redemrp_identity line 33 and 46
 
-that looks before (33)
+looks before (33)
 
 ```
-DisplayRadar(true)
+		DisplayRadar(true)
 		Citizen.Wait(3000)
     TriggerServerEvent("player:getItems", source)
 		TriggerServerEvent("redemrp_skin:loadSkin", function(cb)
 		end) ......
 ```
-that looks if we add auto load  (33)
+ looks if we add auto load  (33)
 ```
-DisplayRadar(true)
+		DisplayRadar(true)
 		Citizen.Wait(3000)
 		TriggerServerEvent("redemrp_skin:loadSkin", function(cb)
 		end) ......
 ```
 
-that looks before (46)
+looks before (46)
 
 ```
 RegisterNUICallback('selectCharacter', function(id, cb)
@@ -54,7 +54,7 @@ RegisterNUICallback('selectCharacter', function(id, cb)
 	TriggerEvent("redemrp_identity:SpawnCharacter")
 end)
 ```
-that looks if we add auto load  (46)
+looks if we add auto load  (46)
 
 ```
 RegisterNUICallback('selectCharacter', function(id, cb)
