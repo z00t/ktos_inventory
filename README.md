@@ -65,7 +65,7 @@ RegisterNUICallback('selectCharacter', function(id, cb)
 	print("Player spawned!")
 	TriggerServerEvent("redemrp:selectCharacter", charId)
 	TriggerEvent("redemrp_identity:SpawnCharacter")
-  TriggerServerEvent("player:getItems", source)
+ 	TriggerServerEvent("player:getItems", source)
 end)
 ```
 ## 4. Credits
