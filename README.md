@@ -60,6 +60,8 @@ next you need add in redem_inventory config item name
 TO DO :
 *Server code require optimization
 
+![alt text](https://i.imgur.com/PxCRpBv.png)
+
 ## 5. Credits
 [Ktos93](http://github.com/Ktos93)
 
