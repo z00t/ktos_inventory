@@ -22,51 +22,28 @@ You can use:
 
 press [E] to open inventory
 ## 4. Auto load inventory
-put code to redemrp_identity line 33 and 46
+put code to redemrp_respawn line 90
 
-looks before (33)
-
-```
-		DisplayRadar(true)
-		Citizen.Wait(3000)
-		TriggerServerEvent("redemrp_skin:loadSkin", function(cb)
-		end) ......
-```
- looks if we add auto load  (33)
-```
-		DisplayRadar(true)
-		Citizen.Wait(3000)
-		TriggerServerEvent("player:getItems", source)
-		TriggerServerEvent("redemrp_skin:loadSkin", function(cb)
-		end) ......
-```
-
-looks before (46)
+looks before (90)
 
 ```
-RegisterNUICallback('selectCharacter', function(id, cb)
-	SetNuiFocus(false, false)
-	local ped = PlayerPedId()
-	FreezeEntityPosition(ped, false)
-	local charId = tonumber(id)
-	print("Player spawned!")
-	TriggerServerEvent("redemrp:selectCharacter", charId)
-	TriggerEvent("redemrp_identity:SpawnCharacter")
-end)
+	NetworkSetFriendlyFireOption(true)
+	TriggerEvent("redemrp_respawn:camera", coords)
+	if new_character == 1 then
+	TriggerEvent("redemrp_skin:openCreator")
+	print("new character")...........
 ```
-looks if we add auto load  (46)
+ looks if we add auto load  (90)
+```
+	NetworkSetFriendlyFireOption(true)
+	TriggerEvent("redemrp_respawn:camera", coords)
+	TriggerServerEvent("player:getItems", source)
+	if new_character == 1 then
+	TriggerEvent("redemrp_skin:openCreator")
+	print("new character")..............
+```
 
-```
-RegisterNUICallback('selectCharacter', function(id, cb)
-	SetNuiFocus(false, false)
-	local ped = PlayerPedId()
-	FreezeEntityPosition(ped, false)
-	local charId = tonumber(id)
-	print("Player spawned!")
-	TriggerServerEvent("redemrp:selectCharacter", charId)
-	TriggerEvent("redemrp_identity:SpawnCharacter")
- 	TriggerServerEvent("player:getItems", source)
-end)
+
 ```
 ## 4. Credits
 [Ktos93](http://github.com/Ktos93)
