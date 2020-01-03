@@ -46,6 +46,10 @@ we add this
 
 ```TriggerServerEvent("player:getItems", source)```
 
+
+TO DO :
+*Server code require optimization
+
 ## 5. Credits
 [Ktos93](http://github.com/Ktos93)
 
