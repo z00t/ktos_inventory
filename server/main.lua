@@ -265,13 +265,17 @@ AddEventHandler("test_lols", function(name, amount , target)
         local charid = user.getSessionVar("charid")
         for i,k in pairs(invTable) do
             if k.id == identifier and k.charid == charid then
-                TriggerEvent("item:delete",{ name , amount}, identifier , charid)
-                TriggerClientEvent("gui:getItems", _source, k.inventory)          
-                TriggerEvent('test_lols222', _target , name , amount)
-                TriggerClientEvent('gui:ReloadMenu', _source)
-                TriggerEvent("player:savInvSv", _source)
-				TriggerClientEvent("redemrp_notification:start", _source, "You have given: [X"..tonumber(amount).."]"..name.. " to " ..GetPlayerName(_target), 3, "success")
-				TriggerClientEvent("redemrp_notification:start", _target, "You've received [X"..tonumber(amount).."]"..name.. " from " ..GetPlayerName(_source), 3, "success")
+                local value = k.inventory[name]
+                local all = value-amount
+                   if all >= 0 then
+                       TriggerEvent("item:delete",{ name , amount}, identifier , charid)
+                       TriggerClientEvent("gui:getItems", _source, k.inventory)          
+                       TriggerEvent('test_lols222', _target , name , amount)
+                       TriggerClientEvent('gui:ReloadMenu', _source)
+                       TriggerEvent("player:savInvSv", _source)
+		       TriggerClientEvent("redemrp_notification:start", _source, "You have given: [X"..tonumber(amount).."]"..name.. " to " ..GetPlayerName(_target), 3, "success")
+		       TriggerClientEvent("redemrp_notification:start", _target, "You've received [X"..tonumber(amount).."]"..name.. " from " ..GetPlayerName(_source), 3, "success")
+                   end
                 break
             end
         end
