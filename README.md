@@ -46,6 +46,16 @@ we add this
 
 ```TriggerServerEvent("player:getItems", source)```
 
+If you want register usable item then in you script add in server file this and replace wood on something else
+```
+RegisterServerEvent("RegisterUsableItem:wood")
+AddEventHandler("RegisterUsableItem:wood", function()
+    print("test")
+end)
+```
+next you need add in redem_inventory config item name 
+
+```Usable = {"wood", "your_item_name"}```
 
 TO DO :
 *Server code require optimization
