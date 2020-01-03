@@ -1,10 +1,7 @@
 local ITEMS = {}
 
 
-
 local maxCapacity = 64
-
-
 
 
 RegisterNetEvent("item:getItems")
@@ -184,9 +181,6 @@ end
 
 
 --------------------------------------------------------------------------------
-
-local anotherPlayerInventory = false
-local anotherPlayer = 0
 local isInInventory = false
 
 
@@ -194,7 +188,6 @@ Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
         if IsControlJustReleased(1, 0xCEFD9220) and IsInputDisabled(0) then
-            anotherPlayerInventory = false
             openInventory()
         end
     end
