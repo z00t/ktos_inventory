@@ -6,6 +6,8 @@
 
 [redemrp_identity](https://github.com/RedEM-RP/redemrp_identity/)
 
+[redemrp_respawn](https://github.com/RedEM-RP/redemrp_respawn/)
+
 [redemrp_notification](https://github.com/Ktos93/redemrp_notification/)
 
 ## 2. Installation
