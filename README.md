@@ -20,7 +20,7 @@ You can use:
 
 /getinv -to load inventory
 
-/giveitem -to add item
+/giveitem -to add item (name amount)
 
 press [E] to open inventory
 ## 4. Auto load inventory
