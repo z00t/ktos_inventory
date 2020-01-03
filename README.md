@@ -29,7 +29,6 @@ looks before (33)
 ```
 		DisplayRadar(true)
 		Citizen.Wait(3000)
-    TriggerServerEvent("player:getItems", source)
 		TriggerServerEvent("redemrp_skin:loadSkin", function(cb)
 		end) ......
 ```
@@ -37,6 +36,7 @@ looks before (33)
 ```
 		DisplayRadar(true)
 		Citizen.Wait(3000)
+		TriggerServerEvent("player:getItems", source)
 		TriggerServerEvent("redemrp_skin:loadSkin", function(cb)
 		end) ......
 ```
