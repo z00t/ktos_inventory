@@ -24,7 +24,7 @@ You can use:
 
 press [E] to open inventory
 ## 4. Auto load inventory
-put code to redemrp_respawn line 90
+put code to redemrp_respawn line 90 CLIENT
 
 looks before (90)
 
@@ -35,7 +35,7 @@ looks before (90)
 	TriggerEvent("redemrp_skin:openCreator")
 	print("new character")...........
 ```
- looks if we add auto load  (90)
+ looks if we add auto load  (90) CLIENT
 ```
 	NetworkSetFriendlyFireOption(true)
 	TriggerEvent("redemrp_respawn:camera", coords)
