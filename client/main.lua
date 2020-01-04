@@ -1,15 +1,6 @@
 local ITEMS = {}
 
 
-local maxCapacity = 64
-
-
-RegisterNetEvent("item:getItems")
-
-RegisterNetEvent("gui:getItems")
-
-
-
 ------------------------- EVENTS -------------------------
 
 
@@ -21,6 +12,7 @@ AddEventHandler("gui:ReloadMenu", function()
     loadPlayerInventory()
 end)
 
+RegisterNetEvent("gui:getItems")
 AddEventHandler("gui:getItems", function(THEITEMS)
     ITEMS = THEITEMS
 end)
