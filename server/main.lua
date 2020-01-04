@@ -192,7 +192,6 @@ AddEventHandler("item:use", function(val)
         local charid = user.getSessionVar("charid")
         for i,k in pairs(invTable) do
             if k.id == identifier and k.charid == charid then
-                TriggerEvent("item:delete",_source, { name , amount}, identifier , charid)
                 TriggerEvent("RegisterUsableItem:"..name, _source)
                 TriggerClientEvent("redemrp_notification:start", _source, "Item used: "..name, 3, "success")
                 TriggerClientEvent('gui:ReloadMenu', _source)
