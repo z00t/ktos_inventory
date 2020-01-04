@@ -179,7 +179,7 @@ local isInInventory = false
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
-        if IsControlJustReleased(1, 0xCEFD9220) and IsInputDisabled(0) then
+        if IsControlJustReleased(1, 0x4CC0E2FE) and IsInputDisabled(0) then
             openInventory()
         end
     end
