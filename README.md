@@ -48,7 +48,7 @@ we add this
 
 ```TriggerServerEvent("player:getItems", source)```
 
-If you want register usable item then in you script add in server file this and replace wood on something else
+If you want register usable item then then you need add to your SERVER script this and replace wood on something else
 ```
 RegisterServerEvent("RegisterUsableItem:wood")
 AddEventHandler("RegisterUsableItem:wood", function()
@@ -59,6 +59,22 @@ next you need add in redem_inventory config item name
 
 ```Usable = {"wood", "your_item_name"}```
 
+
+If you want delete , add or check item amount then you need add to your SERVER script this
+
+```
+data = {}
+TriggerEvent("redem_inventory:getData",function(call)
+		data = call
+end)
+```
+Functions examples:
+
+```
+print(data.checkItem(_source,"water"))
+data.delItem(_source,"water", 2)
+data.addItem(_source,"bread", 10)
+```
 TO DO :
 *Server code require optimization
 
