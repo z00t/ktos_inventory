@@ -97,7 +97,7 @@ AddEventHandler("item:add", function(source, arg, identifier , charid)
                    k.inventory[name]= tonumber(math.floor(newVal))
                    TriggerClientEvent("gui:getItems", _source, k.inventory)
                else
-                   TriggerEvent("item:new", name, amount, identifier , charid)
+                   TriggerEvent("item:new",_source, name, amount, identifier , charid)
                 end
                 break
             end
