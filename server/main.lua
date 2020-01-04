@@ -97,6 +97,7 @@ AddEventHandler("item:add", function(arg, identifier , charid)
                    k.inventory[name]= tonumber(math.floor(newVal))
                else
                    TriggerEvent("item:new", name, amount, identifier , charid)
+                end
                 break
             end
         end
