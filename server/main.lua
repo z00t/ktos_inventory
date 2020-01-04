@@ -68,6 +68,11 @@ AddEventHandler('player:savInvSv', function(source, id)
         --print(identifier)
         for i,k in pairs(invTable) do
             if k.id == identifier and k.charid == charid then
+                for name,value in pairs(k.inventory) do
+			          if value == 0 then
+			              k.inventory[name] = nil
+			         end
+			    end
                 MySQL.Async.execute('UPDATE user_inventory SET items = @items WHERE identifier = @identifier AND charid = @charid', {
                     ['@identifier']  = identifier,
                     ['@charid']  = charid,
