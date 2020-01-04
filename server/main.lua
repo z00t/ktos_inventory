@@ -142,13 +142,8 @@ AddEventHandler("item:onpickup", function(id)
         for i,k in pairs(invTable) do
             if k.id == identifier and k.charid == charid then
                 local pickup  = Pickups[id]
-                local _source = source
-                if k.inventory[pickup.name] ~= nil then
-                    TriggerEvent("item:add", {pickup.name, pickup.amount}, identifier , charid)
-                else
-                    TriggerEvent("item:new",  pickup.name, pickup.amount, identifier , charid)
-                end
-                 TriggerClientEvent("item:Sharepickup", -1, pickup.name, pickup.obj , pickup.amount, x, y, z, 2) 
+                TriggerEvent("item:add", {pickup.name, pickup.amount}, identifier , charid)
+                TriggerClientEvent("item:Sharepickup", -1, pickup.name, pickup.obj , pickup.amount, x, y, z, 2) 
                 TriggerClientEvent('item:removePickup', -1, pickup.obj)
                 Pickups[id] = nil
                 TriggerClientEvent("gui:getItems", _source, k.inventory)
@@ -169,20 +164,10 @@ RegisterCommand('giveitem', function(source, args)
         local charid = user.getSessionVar("charid")
         for i,k in pairs(invTable) do
             if k.id == identifier and k.charid == charid then
-                local test = false
                 local item = args[1]
                 local amount = args[2]
-                for k, v in pairs(k.inventory) do
-                    if k == item then
-                        TriggerEvent("item:add", {item, amount}, identifier , charid)
-                        print("add")
-                        test = true
-                        break
-                    end
-                end
-                if test == false then
-                    TriggerEvent("item:new", item, amount, identifier , charid)
-                end
+                TriggerEvent("item:add", {item, amount}, identifier , charid)
+                print("add")
                 TriggerClientEvent("gui:getItems", _source, k.inventory)
                 TriggerClientEvent('gui:ReloadMenu', _source)
                 TriggerEvent("player:savInvSv", _source)
@@ -296,14 +281,10 @@ AddEventHandler("test_lols222", function(source, name, amount)
         local charid = user.getSessionVar("charid")
         for i,k in pairs(invTable) do
             if k.id == identifier and k.charid == charid then
-				if k.inventory[(name)] ~= nil then
-					TriggerEvent("item:add", {name, amount}, identifier , charid)
-				else
-					TriggerEvent("item:new", name, amount, identifier , charid)
-				end
-					TriggerClientEvent("gui:getItems", _source, k.inventory)          
-					TriggerClientEvent('gui:ReloadMenu', _source)
-					TriggerEvent("player:savInvSv", _source)
+		TriggerEvent("item:add", {name, amount}, identifier , charid)
+		TriggerClientEvent("gui:getItems", _source, k.inventory)          
+	        TriggerClientEvent('gui:ReloadMenu', _source)
+		TriggerEvent("player:savInvSv", _source)
 					
                 break
             end
