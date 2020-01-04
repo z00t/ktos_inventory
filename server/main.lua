@@ -87,13 +87,16 @@ AddEventHandler("item:add", function(arg, identifier , charid)
             if k.id == identifier and k.charid == charid then
 
                 local name = tostring(arg[1])
-                local qty = arg[2]
-                local val = k.inventory[name]
-                newVal = val + qty
-                print(val)
-                print(qty)
-                print(newVal)
-                k.inventory[name]= tonumber(math.floor(newVal))
+                local amount = arg[2]
+                if k.inventory[(name)] ~= nil then
+                   local val = k.inventory[name]
+                   newVal = val + amount
+                   print(val)
+                   print(qty)
+                   print(newVal)
+                   k.inventory[name]= tonumber(math.floor(newVal))
+               else
+                   TriggerEvent("item:new", name, amount, identifier , charid)
                 break
             end
         end
