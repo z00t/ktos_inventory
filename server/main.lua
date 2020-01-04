@@ -81,8 +81,8 @@ AddEventHandler('player:savInvSv', function(source, id)
     end)
 end)
 
-AddEventHandler("item:add", function(arg, identifier , charid)
-
+AddEventHandler("item:add", function(source, arg, identifier , charid)
+        local _source = source
         for i,k in pairs(invTable) do
             if k.id == identifier and k.charid == charid then
 
@@ -95,6 +95,7 @@ AddEventHandler("item:add", function(arg, identifier , charid)
                    print(qty)
                    print(newVal)
                    k.inventory[name]= tonumber(math.floor(newVal))
+                   TriggerClientEvent("gui:getItems", _source, k.inventory)
                else
                    TriggerEvent("item:new", name, amount, identifier , charid)
                 end
@@ -104,22 +105,23 @@ AddEventHandler("item:add", function(arg, identifier , charid)
     
 end)
 
-AddEventHandler("item:new", function(item, quantity, identifier , charid)
-
+AddEventHandler("item:new", function(source, item, quantity, identifier , charid)
+        local _source = source
         for i,k in pairs(invTable) do
             if k.id == identifier and k.charid == charid then
 
                 local name = tostring(item)
                 local qty = tonumber(quantity)
                 k.inventory[(name)] = qty
+                TriggerClientEvent("gui:getItems", _source, k.inventory)
                 break
             end
         end
    
 end)
 
-AddEventHandler("item:delete", function(arg, identifier , charid)
-
+AddEventHandler("item:delete", function(source, arg, identifier , charid)
+        local _source = source
         for i,k in pairs(invTable) do
             if k.id == identifier and k.charid == charid then
                 local name = tostring(arg[1])
@@ -127,6 +129,7 @@ AddEventHandler("item:delete", function(arg, identifier , charid)
                 local val = tonumber(k.inventory[name])
                 newVal = val - qty
                 k.inventory[name]= tonumber(newVal)
+                TriggerClientEvent("gui:getItems", _source, k.inventory)
                 break
             end
         end
@@ -142,11 +145,10 @@ AddEventHandler("item:onpickup", function(id)
         for i,k in pairs(invTable) do
             if k.id == identifier and k.charid == charid then
                 local pickup  = Pickups[id]
-                TriggerEvent("item:add", {pickup.name, pickup.amount}, identifier , charid)
+                TriggerEvent("item:add", _source ,{pickup.name, pickup.amount}, identifier , charid)
                 TriggerClientEvent("item:Sharepickup", -1, pickup.name, pickup.obj , pickup.amount, x, y, z, 2) 
                 TriggerClientEvent('item:removePickup', -1, pickup.obj)
                 Pickups[id] = nil
-                TriggerClientEvent("gui:getItems", _source, k.inventory)
                 TriggerClientEvent('gui:ReloadMenu', _source)
                 TriggerEvent("player:savInvSv", _source)
                 break
@@ -166,9 +168,8 @@ RegisterCommand('giveitem', function(source, args)
             if k.id == identifier and k.charid == charid then
                 local item = args[1]
                 local amount = args[2]
-                TriggerEvent("item:add", {item, amount}, identifier , charid)
+                TriggerEvent("item:add", _source, {item, amount}, identifier , charid)
                 print("add")
-                TriggerClientEvent("gui:getItems", _source, k.inventory)
                 TriggerClientEvent('gui:ReloadMenu', _source)
                 TriggerEvent("player:savInvSv", _source)
                 break
@@ -189,8 +190,7 @@ AddEventHandler("item:use", function(val)
         local charid = user.getSessionVar("charid")
         for i,k in pairs(invTable) do
             if k.id == identifier and k.charid == charid then
-                TriggerEvent("item:delete",{ name , amount}, identifier , charid)
-                TriggerClientEvent("gui:getItems", _source, k.inventory)
+                TriggerEvent("item:delete",_source, { name , amount}, identifier , charid)              
                 TriggerEvent("RegisterUsableItem:"..name)
                 TriggerClientEvent("redemrp_notification:start", _source, "Item used: "..name, 3, "success")
                 TriggerClientEvent('gui:ReloadMenu', _source)
@@ -219,8 +219,7 @@ AddEventHandler("item:drop", function(val, amount)
                 print(all)
                 if all >= 0 then
                     TriggerClientEvent('item:pickup',_source, name, amount)
-                    TriggerEvent("item:delete", {name , amount}, identifier , charid)
-                    TriggerClientEvent("gui:getItems", _source, k.inventory)
+                    TriggerEvent("item:delete", _source, {name , amount}, identifier , charid)
                     TriggerClientEvent('gui:ReloadMenu', _source)
                     TriggerEvent("player:savInvSv", _source)
                 end
@@ -257,8 +256,7 @@ AddEventHandler("test_lols", function(name, amount , target)
                 local value = k.inventory[name]
                 local all = value-amount
                    if all >= 0 then
-                       TriggerEvent("item:delete",{ name , amount}, identifier , charid)
-                       TriggerClientEvent("gui:getItems", _source, k.inventory)          
+                       TriggerEvent("item:delete",_source, { name , amount}, identifier , charid)         
                        TriggerEvent('test_lols222', _target , name , amount)
                        TriggerClientEvent('gui:ReloadMenu', _source)
                        TriggerEvent("player:savInvSv", _source)
@@ -281,8 +279,7 @@ AddEventHandler("test_lols222", function(source, name, amount)
         local charid = user.getSessionVar("charid")
         for i,k in pairs(invTable) do
             if k.id == identifier and k.charid == charid then
-		TriggerEvent("item:add", {name, amount}, identifier , charid)
-		TriggerClientEvent("gui:getItems", _source, k.inventory)          
+		TriggerEvent("item:add",_source, {name, amount}, identifier , charid)        
 	        TriggerClientEvent('gui:ReloadMenu', _source)
 		TriggerEvent("player:savInvSv", _source)
 					
