@@ -90,7 +90,6 @@ AddEventHandler("item:add", function(source, arg, identifier , charid)
     local _source = source
     for i,k in pairs(invTable) do
         if k.id == identifier and k.charid == charid then
-
             local name = tostring(arg[1])
             local amount = arg[2]
             if k.inventory[(name)] ~= nil then
@@ -111,14 +110,13 @@ AddEventHandler("item:add", function(source, arg, identifier , charid)
 
 end)
 
-AddEventHandler("item:new", function(source, item, quantity, identifier , charid)
+AddEventHandler("item:new", function(source, item, amount, identifier , charid)
     local _source = source
     for i,k in pairs(invTable) do
         if k.id == identifier and k.charid == charid then
-
             local name = tostring(item)
-            local qty = tonumber(quantity)
-            k.inventory[(name)] = qty
+            local val = tonumber(amount)
+            k.inventory[(name)] = val
             TriggerClientEvent("gui:getItems", _source, k.inventory)
             TriggerEvent("player:savInvSv", _source)
             break end
@@ -319,10 +317,10 @@ function inventory.delItem(_source, name , amount)
         TriggerEvent("item:delete", _source, {name , amount}, identifier , charid)
     end)
 end
------------------Register Usable item---------------
+--------EXAMPLE---------Register Usable item---------------EXAMPLE
 RegisterServerEvent("RegisterUsableItem:wood")
-AddEventHandler("RegisterUsableItem:wood", function()
+AddEventHandler("RegisterUsableItem:wood", function(source)
     print("test")
 end)
-----------------------------------------------------
+------------------------EXAMPLE----------------------------EXAMPLE
 
