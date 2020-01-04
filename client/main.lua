@@ -301,7 +301,9 @@ function loadPlayerInventory()
             for _, u in pairs(Usable) do
                 if k == u then
                     use = true
+                   break
                 end
+            end
                 table.insert(test, value,{
                     label     = k,
                     type      = 'item_standard',
@@ -313,7 +315,7 @@ function loadPlayerInventory()
                     canRemove = true
                 })
                 value = value + 1
-            end
+            
         end
     end
 
